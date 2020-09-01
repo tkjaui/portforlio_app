@@ -13,3 +13,14 @@
  *= require_tree .
  *= require_self
  */
+
+ .profile_image{
+   border-radius: 30%;
+ }
+
+ .main-image{
+   height:940px;
+   background-image: url(top_page.jpg);
+   background-repeat: none;
+   background-size: contain;
+ }

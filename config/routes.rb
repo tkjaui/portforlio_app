@@ -1,3 +1,6 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  devise_for :users
+  root to: "home#index"
+  resources :users #この１行でusersに関する必要なルーティングが作られる
+  resources :services #この１行でservicesに関する必要なルーティングが作られる
 end

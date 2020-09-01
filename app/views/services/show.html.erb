@@ -1,0 +1,21 @@
+<h1>データ復旧詳細</h1>
+
+<%= attachment_image_tag @service, :image, size:20*20 %><br>
+サービス名：<%= @service.title %><br>
+会社名：<%= @service.company %><br>
+機種名：<%= @service.device %><br>
+症状：<%= @service.problem %><br>
+金額：<%= @service.price %><br>
+納品までの日数：<%= @service.days %><br>
+結果：<%= @service.result %><br>
+コメント：<%= @service.body %><br>
+投稿者：<%= @service.user.username %><br>
+
+<% if @service.user.id == current_user.id  %>
+  <%= link_to "編集", edit_service_path(@service), class:"btn btn-primary" %>
+<% end %>
+
+<%= link_to user_path(@service.user) do %>
+  <%= @service.user.username %> さんのページへ
+<% end %>
+
