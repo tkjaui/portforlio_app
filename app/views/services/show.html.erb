@@ -1,21 +1,33 @@
 <h1>データ復旧詳細</h1>
 
-<%= attachment_image_tag @service, :image, size:20*20 %><br>
-サービス名：<%= @service.title %><br>
-会社名：<%= @service.company %><br>
-機種名：<%= @service.device %><br>
-症状：<%= @service.problem %><br>
-金額：<%= @service.price %><br>
-納品までの日数：<%= @service.days %><br>
-結果：<%= @service.result %><br>
-コメント：<%= @service.body %><br>
-投稿者：<%= @service.user.username %><br>
+
+<div class="card mb-5" style="max-width: 1000px;">
+  <div class="row no-gutters">
+    <div class="col-md-5">
+      <%= attachment_image_tag @service, :image, size:20*20 %>
+    </div>
+    <div class="col-md-7">
+      <div class="card-body">
+        <h5 class="card-title">サービス名：<%= @service.title %></h5>
+        <p class="card-text">会社名：<%= @service.company %></p>
+        <p class="card-text">機種：<%= @service.device %></p>
+        <p class="card-text">症状：<%= @service.problem %></p>
+        <p class="card-text">金額：<%= @service.price %></p>
+        <p class="card-text">納品までの日数：<%= @service.days %></p>
+        <p class="card-text">結果：<%= @service.result %></p>
+        <p class="card-text">コメント：<%= @service.body %></p>
+        <p class="card-text">投稿者：<%= @service.user.username %></p>
+        <p class="card-text"><small class="text-muted">投稿日時：<%= @service.updated_at.strftime("%Y-%m-%d %H:%M")%></small></p>
+      </div>
+    </div>
+  </div>
+</div>
 
 <% if @service.user.id == current_user.id  %>
   <%= link_to "編集", edit_service_path(@service), class:"btn btn-primary" %>
 <% end %>
 
 <%= link_to user_path(@service.user) do %>
-  <%= @service.user.username %> さんのページへ
+  <%= @service.user.username %> 
 <% end %>
-
+さんのページへ
