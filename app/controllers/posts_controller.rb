@@ -21,6 +21,28 @@ class PostsController < ApplicationController
     end
   end
 
+  def edit
+    @post = Post.find(params[:id])
+    if @post.user != current_user
+      redirect_to posts_path alert:"不正なアクセスです"
+    end
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+      redirect_to posts_path, notice:"更新しました"
+    else
+      render edit
+    end
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to posts_path(@post)
+  end
+
   private
   def post_params
     params.require(:post).permit(:content)

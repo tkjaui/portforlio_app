@@ -10,11 +10,3 @@
     <hr>
   </div>
 <% end %>
-
-<%= form_for [@post, @comment] do |f| %>
-  <%= f.text_field :content %>
-  <br>
-  <%= f.submit 'コメントする' %>
-<% end %>
-
-<%= link_to "ホームへ戻る", posts_path %>

@@ -1,4 +1,4 @@
-<h1>投稿一覧</h1>
+
 <% if user_signed_in? %>
   <h2>投稿する</h2>
   <%= form_for @post do |f| %>
@@ -8,12 +8,18 @@
   <hr>
   <h2>投稿一覧</h2>
   <% @posts.reverse.each do |post| %>
-    <a href="/users/<%= post.user.id %>"><%= post.user.username %></a>
-    <p><%= post.content %></p>
+    投稿者：<a href="/users/<%= post.user.id %>"><%= post.user.username %></a>
+    <p>コメント：<%= post.content %></p>
     <p>Posted <%= time_ago_in_words(post.created_at) %> ago</p>
+    <% if post.user.id == current_user.id %>
+      <%= link_to "編集", edit_post_path(post), class:"btn btn-primary" %>
+    <% end %>
+    <hr>
   <% end %>
 
-  <%= paginate @posts %>
+
+ 
+<%= paginate @posts %>
 
 <% else %>
   <%= link_to "ユーザー登録", new_user_registration_path %>
