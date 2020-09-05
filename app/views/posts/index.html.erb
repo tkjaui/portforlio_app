@@ -1,0 +1,21 @@
+<h1>投稿一覧</h1>
+<% if user_signed_in? %>
+  <h2>投稿する</h2>
+  <%= form_for @post do |f| %>
+    <%= f.text_field :content %>
+    <%= f.submit %>
+  <% end %>
+  <hr>
+  <h2>投稿一覧</h2>
+  <% @posts.reverse.each do |post| %>
+    <a href="/users/<%= post.user.id %>"><%= post.user.username %></a>
+    <p><%= post.content %></p>
+    <p>Posted <%= time_ago_in_words(post.created_at) %> ago</p>
+  <% end %>
+
+  <%= paginate @posts %>
+
+<% else %>
+  <%= link_to "ユーザー登録", new_user_registration_path %>
+  <%= link_to "ログイン", new_user_session_path %>
+<% end %>

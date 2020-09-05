@@ -6,6 +6,8 @@ class ServicesController < ApplicationController
 
   def show
     @service = Service.find(params[:id])
+    @comments = @service.comments
+    @comment = @service.comments.build
   end
 
   def new
